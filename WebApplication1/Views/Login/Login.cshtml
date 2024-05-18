@@ -1,0 +1,47 @@
+﻿@model LoginModel
+
+@{
+    Layout = "_Layout";
+    var title = "Login";
+    ViewData["Title"] = title;
+}
+
+<style>
+    .input-validation-error {
+        border-color: red;
+    }
+
+    .form-control::placeholder {
+        color: #888;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+</style>
+
+<h2 class="text-center">@title</h2>
+
+@if (ViewBag.Login == "Login failed")
+{
+    <p class="text-center" style="color:red">@ViewBag.Login</p>
+}
+
+<form id="loginForm" class="m-4 p-4 border rounded" method="post" asp-action="Login">
+    <div class="form-group">
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" class="form-control" placeholder="Email">
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Password">Password</label>
+        <input asp-for="Password" type="password" class="form-control" placeholder="Password">
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
